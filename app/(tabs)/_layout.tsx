@@ -1,12 +1,12 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Tabs } from 'expo-router'
+import React from 'react'
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/colors';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { TabBarIcon } from '@/components/navigation/tab-bar-icon'
+import { Colors } from '@/constants/colors'
+import { useColorScheme } from '@/hooks/use-color-scheme'
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+const TabLayout = () => {
+  const colorScheme = useColorScheme()
 
   return (
     <Tabs
@@ -19,10 +19,11 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Home',
+          // eslint-disable-next-line react/no-unstable-nested-components -- rn thing
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
-              name={focused ? 'home' : 'home-outline'}
               color={color}
+              name={focused ? 'home' : 'home-outline'}
             />
           ),
         }}
@@ -31,14 +32,17 @@ export default function TabLayout() {
         name="explore"
         options={{
           title: 'Explore',
+          // eslint-disable-next-line react/no-unstable-nested-components -- rn thing
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
-              name={focused ? 'code-slash' : 'code-slash-outline'}
               color={color}
+              name={focused ? 'code-slash' : 'code-slash-outline'}
             />
           ),
         }}
       />
     </Tabs>
-  );
+  )
 }
+
+export default TabLayout

@@ -25,6 +25,13 @@ module.exports = {
   },
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/restrict-template-expressions': [
+      'error',
+      {
+        allowNumber: true,
+      },
+    ],
     '@typescript-eslint/no-shadow': 'off',
     '@typescript-eslint/no-misused-promises': [
       'error',
@@ -78,7 +85,7 @@ module.exports = {
     // Varies file convention from libraries, e.g. Next.js App Router and Prettier
     // Must use default export
     {
-      files: ['*.config.{mjs,ts}', 'app/**/*.tsx'],
+      files: ['*.config.{mjs,ts,js}', 'app/**/*.tsx'],
       rules: {
         'import/no-default-export': 'off',
         'import/prefer-default-export': ['error', { target: 'any' }],

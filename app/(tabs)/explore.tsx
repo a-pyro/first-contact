@@ -1,18 +1,23 @@
 import Ionicons from '@expo/vector-icons/Ionicons'
-import { StyleSheet, Image, Platform } from 'react-native'
+import {
+  Image,
+  type ImageSourcePropType,
+  Platform,
+  StyleSheet,
+} from 'react-native'
 
 import { Collapsible } from '@/components/collapsible'
 import { ExternalLink } from '@/components/external-link'
-import ParallaxScrollView from '@/components/ParallaxScrollView'
-import { ThemedText } from '@/components/ThemedText'
-import { ThemedView } from '@/components/ThemedView'
+import { ParallaxScrollView } from '@/components/parallax-scroll-view'
+import { ThemedText } from '@/components/themed-text'
+import { ThemedView } from '@/components/themed-view'
 
-export default function TabTwoScreen() {
+const TabTwoScreen = () => {
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
       headerImage={
-        <Ionicons size={310} name="code-slash" style={styles.headerImage} />
+        <Ionicons name="code-slash" size={310} style={styles.headerImage} />
       }
     >
       <ThemedView style={styles.titleContainer}>
@@ -52,8 +57,10 @@ export default function TabTwoScreen() {
           provide files for different screen densities
         </ThemedText>
         <Image
-          source={require('@/assets/images/react-logo.png')}
           style={{ alignSelf: 'center' }}
+          source={
+            require('@/assets/images/react-logo.png') as ImageSourcePropType
+          }
         />
         <ExternalLink href="https://reactnative.dev/docs/images">
           <ThemedText type="link">Learn more</ThemedText>
@@ -75,8 +82,8 @@ export default function TabTwoScreen() {
         <ThemedText>
           This template has light and dark mode support. The{' '}
           <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook
-          lets you inspect what the user's current color scheme is, and so you
-          can adjust UI colors accordingly.
+          lets you inspect what the user&apos;s current color scheme is, and so
+          you can adjust UI colors accordingly.
         </ThemedText>
         <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
           <ThemedText type="link">Learn more</ThemedText>
@@ -109,6 +116,8 @@ export default function TabTwoScreen() {
     </ParallaxScrollView>
   )
 }
+
+export default TabTwoScreen
 
 const styles = StyleSheet.create({
   headerImage: {
