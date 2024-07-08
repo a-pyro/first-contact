@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-raw-text -- react compo */
 import { Link, Stack } from 'expo-router'
 import { StyleSheet } from 'react-native'
 
@@ -22,8 +23,8 @@ export default NotFoundScreen
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
+    flex: 1,
     justifyContent: 'center',
     padding: 20,
   },

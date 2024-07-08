@@ -8,10 +8,12 @@ const { JAVASCRIPT_FILES } = require('@vercel/style-guide/eslint/constants')
 
 module.exports = {
   root: true,
+  plugins: ['react-native'],
   extends: [
     require.resolve('@vercel/style-guide/eslint/node'),
     require.resolve('@vercel/style-guide/eslint/react'),
     require.resolve('@vercel/style-guide/eslint/typescript'),
+    'plugin:react-native/all',
   ],
   parserOptions: {
     project,

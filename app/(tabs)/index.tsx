@@ -1,8 +1,10 @@
+/* eslint-disable react-native/no-raw-text -- to fix at compo level */
 import {
   Image,
   type ImageSourcePropType,
   Platform,
   StyleSheet,
+  Text,
 } from 'react-native'
 
 import { HelloWave } from '@/components/hello-wave'
@@ -28,7 +30,9 @@ const HomeScreen = () => {
         <HelloWave />
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
+        <ThemedText type="subtitle">
+          <Text>Step 1: Try it</Text>
+        </ThemedText>
         <ThemedText>
           Edit{' '}
           <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText>{' '}
@@ -64,20 +68,20 @@ const HomeScreen = () => {
 export default HomeScreen
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  reactLogo: {
+    bottom: 0,
+    height: 178,
+    left: 0,
+    position: 'absolute',
+    width: 290,
   },
   stepContainer: {
     gap: 8,
     marginBottom: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  titleContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: 8,
   },
 })

@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-raw-text -- its text component*/
 import Ionicons from '@expo/vector-icons/Ionicons'
 import {
   Image,
@@ -57,6 +58,7 @@ const TabTwoScreen = () => {
           provide files for different screen densities
         </ThemedText>
         <Image
+          // eslint-disable-next-line react-native/no-inline-styles -- doesnt have other props
           style={{ alignSelf: 'center' }}
           source={
             require('@/assets/images/react-logo.png') as ImageSourcePropType
@@ -70,7 +72,7 @@ const TabTwoScreen = () => {
         <ThemedText>
           Open <ThemedText type="defaultSemiBold">app/_layout.tsx</ThemedText>{' '}
           to see how to load{' '}
-          <ThemedText style={{ fontFamily: 'SpaceMono' }}>
+          <ThemedText fontFamily="SpaceMono">
             custom fonts such as this one.
           </ThemedText>
         </ThemedText>
@@ -120,9 +122,10 @@ const TabTwoScreen = () => {
 export default TabTwoScreen
 
 const styles = StyleSheet.create({
+  // eslint-disable-next-line react-native/no-color-literals -- a
   headerImage: {
-    color: '#808080',
     bottom: -90,
+    color: '#808080',
     left: -35,
     position: 'absolute',
   },

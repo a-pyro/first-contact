@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-raw-text -- a */
 import { StyleSheet } from 'react-native'
 import Animated, {
   useAnimatedStyle,

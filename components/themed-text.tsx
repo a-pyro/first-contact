@@ -6,12 +6,14 @@ export type ThemedTextProps = TextProps & {
   lightColor?: string
   darkColor?: string
   type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link'
+  fontFamily?: string
 }
 
 export const ThemedText = ({
   style,
   lightColor,
   darkColor,
+  fontFamily,
   type = 'default',
   ...rest
 }: ThemedTextProps) => {
@@ -27,6 +29,7 @@ export const ThemedText = ({
         type === 'subtitle' ? styles.subtitle : undefined,
         type === 'link' ? styles.link : undefined,
         style,
+        fontFamily ? { fontFamily } : undefined,
       ]}
       {...rest}
     />
@@ -40,21 +43,22 @@ const styles = StyleSheet.create({
   },
   defaultSemiBold: {
     fontSize: 16,
-    lineHeight: 24,
     fontWeight: '600',
+    lineHeight: 24,
   },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    lineHeight: 32,
+  // eslint-disable-next-line react-native/no-color-literals -- a
+  link: {
+    color: '#0a7ea4',
+    fontSize: 16,
+    lineHeight: 30,
   },
   subtitle: {
     fontSize: 20,
     fontWeight: 'bold',
   },
-  link: {
-    lineHeight: 30,
-    fontSize: 16,
-    color: '#0a7ea4',
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    lineHeight: 32,
   },
 })

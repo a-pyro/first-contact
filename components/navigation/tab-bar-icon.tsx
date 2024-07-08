@@ -8,5 +8,6 @@ export const TabBarIcon = ({
   style,
   ...rest
 }: IconProps<ComponentProps<typeof Ionicons>['name']>) => {
+  // eslint-disable-next-line react-native/no-inline-styles -- rn thing
   return <Ionicons size={28} style={[{ marginBottom: -3 }, style]} {...rest} />
 }
