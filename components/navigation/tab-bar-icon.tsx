@@ -20,6 +20,7 @@ export const TabBarIcon = ({ icon, color, name, focused }: Props) => {
         tintColor={color}
       />
       <Text
+        style={{ color }}
         className={cn('text-xs', {
           'font-psemibold': focused,
           'font-pregular': !focused,

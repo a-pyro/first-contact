@@ -14,7 +14,15 @@ export const TabsBar = () => {
   return (
     <Tabs
       screenOptions={{
-        tabBarShowLabel: false, // only show the label of the icon
+        tabBarActiveTintColor: '#FFA001',
+        tabBarInactiveTintColor: '#CDCDE0',
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          backgroundColor: '#161622',
+          borderTopWidth: 1,
+          borderTopColor: '#232533',
+          height: 84,
+        },
       }}
     >
       <Tabs.Screen
