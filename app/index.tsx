@@ -1,11 +1,10 @@
 /* eslint-disable react-native/no-inline-styles  -- rn */
 import { router } from 'expo-router'
-import { StatusBar } from 'expo-status-bar'
 import React from 'react'
 import { Image, ScrollView, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context' // this keeps the content within the safe area of the device (notches, etc.)
 
-import { CustomButton } from '@/components'
+import { AppStatusBar, CustomButton } from '@/components'
 import { images } from '@/constants'
 
 const HomePage = () => {
@@ -48,7 +47,7 @@ const HomePage = () => {
         </View>
       </ScrollView>
       {/* the top  bar where the time and wifi and other stuff are */}
-      <StatusBar backgroundColor="#161622" style="light" />
+      <AppStatusBar />
     </SafeAreaView>
   )
 }
