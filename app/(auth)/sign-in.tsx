@@ -1,12 +1,9 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+
+import { ScrollableWrapper } from '@/components/scrollable-wrapper'
 
 const SignIn = () => {
-  return (
-    <View>
-      <Text>SignIn</Text>
-    </View>
-  )
+  return <ScrollableWrapper />
 }
 
 export default SignIn

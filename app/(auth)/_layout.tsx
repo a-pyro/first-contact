@@ -1,8 +1,6 @@
 import { Stack } from 'expo-router'
 import React from 'react'
 
-import { AppStatusBar } from '@/components'
-
 const AuthLayout = () => {
   return (
     <Stack>
@@ -18,7 +16,6 @@ const AuthLayout = () => {
           headerShown: false,
         }}
       />
-      <AppStatusBar />
     </Stack>
   )
 }
