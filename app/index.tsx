@@ -7,7 +7,7 @@ import { images } from '@/constants'
 
 const HomePage = () => {
   return (
-    <ScrollableWrapper>
+    <ScrollableWrapper innerViewClass="items-center">
       <Image
         className="h-[84px] w-[130px]"
         resizeMode="contain"

@@ -8,20 +8,20 @@ import { cn } from '@/utils'
 import { AppStatusBar } from './app-status-bar'
 
 type ScrollableWrapperProps = {
-  className?: ClassValue
+  innerViewClass?: ClassValue
 }
 
 export const ScrollableWrapper = ({
   children,
-  className,
+  innerViewClass,
 }: PropsWithChildren<ScrollableWrapperProps>) => {
   return (
     <SafeAreaView className="h-full bg-primary">
       <ScrollView contentContainerStyle={{ height: '100%' }}>
         <View
           className={cn(
-            'my-6 min-h-[85vh] w-full items-center justify-center px-4',
-            className,
+            'my-6 min-h-[85vh] w-full justify-center px-4',
+            innerViewClass,
           )}
         >
           {children}
