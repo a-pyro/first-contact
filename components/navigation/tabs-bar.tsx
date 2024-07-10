@@ -22,6 +22,7 @@ export const TabsBar = () => {
           borderTopWidth: 1,
           borderTopColor: '#232533',
           height: 84,
+          paddingVertical: 15,
         },
       }}
     >

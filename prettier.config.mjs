@@ -7,6 +7,7 @@ const config = {
   semi: false,
   arrowParens: 'always',
   printWidth: 80,
+  plugins: [...vercelPrettierOptions.plugins, 'prettier-plugin-tailwindcss'],
 }
 
 export default config
