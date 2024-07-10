@@ -30,7 +30,9 @@ export const CustomButton = ({
       )}
       onPress={onPress}
     >
-      <Text className={cn('text-center text-lg', textClass)}>{title}</Text>
+      <Text className={cn('py-1 text-center text-lg font-semibold', textClass)}>
+        {title}
+      </Text>
     </TouchableOpacity>
   )
 }
