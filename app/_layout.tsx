@@ -62,13 +62,13 @@ const RootLayout = () => {
             // nasconde il nome della pagina nell'header (che mette di default il nome della pagina corrente)
           }}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="/search/[query]"
           options={{
             headerShown: false,
             // nasconde il nome della pagina nell'header (che mette di default il nome della pagina corrente)
           }}
-        />
+        /> */}
         <Stack.Screen name="+not-found" />
       </Stack>
     </ThemeProvider>

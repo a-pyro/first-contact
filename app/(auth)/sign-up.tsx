@@ -1,12 +1,9 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+
+import { AuthForm } from '@/components'
 
 const SignUp = () => {
-  return (
-    <View>
-      <Text>SignUp</Text>
-    </View>
-  )
+  return <AuthForm formType="signup" isLoading={false} onSubmit={console.log} />
 }
 
 export default SignUp
