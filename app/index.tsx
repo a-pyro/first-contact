@@ -1,11 +1,14 @@
-import { router } from 'expo-router'
+import { Redirect, router } from 'expo-router'
 import React from 'react'
 import { Image, Text, View } from 'react-native'
 
 import { CustomButton, ScrollableWrapper } from '@/components'
 import { images } from '@/constants'
+import { useUserContext } from '@/context'
 
 const HomePage = () => {
+  const { isLogged, loading } = useUserContext()
+  if (!loading && isLogged) return <Redirect href="/home" />
   return (
     <ScrollableWrapper innerViewClass="items-center" statusBarStyle="light">
       <Image
