@@ -1,7 +1,8 @@
+import { Link } from 'expo-router'
 import React, { useState } from 'react'
-import { Image, Text } from 'react-native'
+import { Image, Text, View } from 'react-native'
 
-import { FormField } from '@/components'
+import { CustomButton, FormField } from '@/components'
 import { ScrollableWrapper } from '@/components/scrollable-wrapper'
 import { images } from '@/constants'
 
@@ -15,8 +16,12 @@ const SignInView = () => {
     email: '',
     password: '',
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const handleSubmit = () => {
+    console.log(form)
+  }
   return (
-    <ScrollableWrapper>
+    <ScrollableWrapper statusBarStyle="light">
       <Image
         className="h-[34px] w-[115px]"
         resizeMode="contain"
@@ -45,6 +50,20 @@ const SignInView = () => {
           setForm({ ...form, password: value })
         }}
       />
+      <CustomButton
+        containerClass="mt-7"
+        isLoading={isSubmitting}
+        title="Log in"
+        onPress={handleSubmit}
+      />
+      <View className="flex flex-row justify-center gap-2 pt-5">
+        <Text className="font-pregular text-lg text-gray-100">
+          Don&apos;t have an account?
+        </Text>
+        <Link className="font-psemibold text-lg text-secondary" href="/sign-up">
+          <Text>Signup</Text>
+        </Link>
+      </View>
     </ScrollableWrapper>
   )
 }
