@@ -1,5 +1,12 @@
 /* eslint-disable no-console -- debug */
-import { Account, Avatars, Client, Databases, ID } from 'react-native-appwrite'
+import {
+  Account,
+  Avatars,
+  Client,
+  Databases,
+  ID,
+  Query,
+} from 'react-native-appwrite'
 
 import { type SignUpFormState } from '@/components/form'
 
@@ -69,6 +76,25 @@ export const createUser = async ({
   } catch (error) {
     // Handle the error here
     console.error('Error creating user:', error)
+    throw error
+  }
+}
+
+export const getCurrentUser = async () => {
+  try {
+    const currentAccount = await account.get()
+    if (!currentAccount.$id) throw new Error('User not found')
+
+    const currentUser = await dbs.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.userCollectionId,
+      [Query.equal('accountId', currentAccount.$id)],
+    )
+    if (!currentUser.total) throw new Error('User not found')
+    return currentUser.documents[0]
+  } catch (error) {
+    // Handle the error here
+    console.error('Error getting current user:', error)
     throw error
   }
 }
