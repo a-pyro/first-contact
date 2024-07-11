@@ -52,14 +52,14 @@ export const createUser = async ({
     )
 
     if (!newAccount.$id) throw new Error('Account creation failed')
-    const avatarUrl = avatars.getInitials(userName)
+    const avatar = avatars.getInitials(userName)
     await signIn({ email, password })
     const newUser = await dbs.createDocument(
       appwriteConfig.databaseId,
       appwriteConfig.userCollectionId,
       ID.unique(),
       {
-        avatarUrl,
+        avatar,
         accountId: newAccount.$id,
         email,
         username: userName,

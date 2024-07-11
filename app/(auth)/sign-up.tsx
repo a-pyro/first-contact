@@ -1,4 +1,6 @@
+import { router } from 'expo-router'
 import React, { useCallback, useState } from 'react'
+import { Alert } from 'react-native'
 
 import { AuthForm, type SignUpFormState } from '@/components'
 import { createUser } from '@/utils'
@@ -13,20 +15,32 @@ const SignUp = () => {
       const sanitizedEmail = email.trim().toLowerCase()
       const sanitizedPassword = password.trim()
       const sanitizedUserName = userName.trim()
-      setIsSubmitting(true)
-      const response = await createUser({
-        email: sanitizedEmail,
-        password: sanitizedPassword,
-        userName: sanitizedUserName,
-      })
+      try {
+        setIsSubmitting(true)
 
-      console.log(response)
+        // create a new user
+        await createUser({
+          email: sanitizedEmail,
+          password: sanitizedPassword,
+          userName: sanitizedUserName,
+        })
+
+        router.push('/home')
+      } catch (error) {
+        Alert.alert('Error', (error as { message: string }).message)
+      } finally {
+        setIsSubmitting(false)
+      }
     },
     [],
   )
 
   return (
-    <AuthForm formType="signup" isLoading={false} onSubmit={handleSubmit} />
+    <AuthForm
+      formType="signup"
+      isLoading={isSubmitting}
+      onSubmit={handleSubmit}
+    />
   )
 }
 
