@@ -1,6 +1,6 @@
 import { Link } from 'expo-router'
 import React, { useState } from 'react'
-import { Image, Text, View } from 'react-native'
+import { Alert, Image, Text, View } from 'react-native'
 
 import { ScrollableWrapper } from '@/components/scrollable-wrapper'
 import { images } from '@/constants'
@@ -45,6 +45,15 @@ export const AuthForm = <TFormType extends FormType>({
   )
 
   const handleSubmit = () => {
+    if (
+      (form.formType === 'signin' && (!form.email || !form.password)) ||
+      (form.formType === 'signup' &&
+        (!form.email || !form.password || !form.userName))
+    ) {
+      Alert.alert('Please fill in all fields')
+      return
+    }
+
     onSubmit(
       form as TFormType extends 'signin' ? SigninFormState : SignUpFormState,
     )
