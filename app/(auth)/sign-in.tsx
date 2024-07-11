@@ -7,7 +7,7 @@ const SignInView = () => {
   const handleSubmit = () => {
     console.log(form)
   }
-  return <AuthForm formType="login" isLoading={false} onSubmit={console.log} />
+  return <AuthForm formType="signin" isLoading={false} onSubmit={console.log} />
 }
 
 export default SignInView

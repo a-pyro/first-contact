@@ -9,6 +9,7 @@ import { Stack } from 'expo-router'
 // eslint-disable-next-line import/order -- a
 import * as SplashScreen from 'expo-splash-screen'
 import 'react-native-reanimated'
+import 'react-native-url-polyfill/auto'
 
 import { useEffect } from 'react'
 

@@ -9,22 +9,46 @@ import { CustomButton } from '../custom-button'
 
 import { FormField } from './form-field'
 
-type FormState = {
+type FormType = 'signin' | 'signup'
+
+type SigninFormState = {
   email: string
   password: string
+  formType: Extract<FormType, 'signin'>
 }
 
-type AuthFormProps = {
-  formType: 'login' | 'signup' // Specify the form type
-  onSubmit: (form: FormState) => void
+type SignUpFormState = {
+  email: string
+  password: string
+  userName: string
+  formType: Extract<FormType, 'signup'>
+}
+type FormState = SigninFormState | SignUpFormState
+
+type AuthFormProps<TFormType extends FormType> = {
+  formType: TFormType
+  onSubmit: (
+    form: TFormType extends 'signin' ? SigninFormState : SignUpFormState,
+  ) => void
   isLoading: boolean
 }
 
-export const AuthForm = ({ formType, onSubmit, isLoading }: AuthFormProps) => {
-  const [form, setForm] = useState<FormState>({
-    email: '',
-    password: '',
-  })
+export const AuthForm = <TFormType extends FormType>({
+  formType,
+  onSubmit,
+  isLoading,
+}: AuthFormProps<TFormType>) => {
+  const [form, setForm] = useState<FormState>(
+    formType === 'signin'
+      ? { email: '', password: '', formType: 'signin' }
+      : { email: '', password: '', userName: '', formType: 'signup' },
+  )
+
+  const handleSubmit = () => {
+    onSubmit(
+      form as TFormType extends 'signin' ? SigninFormState : SignUpFormState,
+    )
+  }
 
   return (
     <ScrollableWrapper statusBarStyle="light">
@@ -35,8 +59,19 @@ export const AuthForm = ({ formType, onSubmit, isLoading }: AuthFormProps) => {
       />
 
       <Text className="mt-10 font-psemibold text-2xl font-semibold text-white">
-        {formType === 'login' ? 'Log in to Aora' : 'Sign up for Aora'}
+        {formType === 'signin' ? 'Sign in to Aora' : 'Sign up for Aora'}
       </Text>
+      {form.formType === 'signup' && (
+        <FormField
+          title="Username"
+          type="text"
+          value={form.userName}
+          wrapperViewClassName="mt-5"
+          handleChange={(value) => {
+            setForm({ ...form, userName: value })
+          }}
+        />
+      )}
       <FormField
         keyboardType="email-address"
         title="Email"
@@ -59,24 +94,22 @@ export const AuthForm = ({ formType, onSubmit, isLoading }: AuthFormProps) => {
       <CustomButton
         containerClass="mt-7"
         isLoading={isLoading}
-        title={formType === 'login' ? 'Log in' : 'Sign up'}
-        onPress={() => {
-          onSubmit(form)
-        }}
+        title={formType === 'signin' ? 'Log in' : 'Sign up'}
+        onPress={handleSubmit}
       />
-      {formType === 'login' && (
-        <View className="flex flex-row justify-center gap-2 pt-5">
-          <Text className="font-pregular text-lg text-gray-100">
-            Already have an account?
-          </Text>
-          <Link
-            className="font-psemibold text-lg text-secondary"
-            href="/sign-up"
-          >
-            <Text>login</Text>
-          </Link>
-        </View>
-      )}
+      <View className="flex flex-row justify-center gap-2 pt-5">
+        <Text className="font-pregular text-lg text-gray-100">
+          {formType === 'signin'
+            ? 'Dont have an account?'
+            : 'Already have an account?'}
+        </Text>
+        <Link
+          className="font-psemibold text-lg text-secondary"
+          href={formType === 'signin' ? '/sign-up' : '/sign-in'}
+        >
+          <Text>{formType === 'signin' ? 'Sign up' : 'Sign in'} </Text>
+        </Link>
+      </View>
     </ScrollableWrapper>
   )
 }
