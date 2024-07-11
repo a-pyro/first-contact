@@ -1,4 +1,7 @@
-import { Account, Client, ID } from 'react-native-appwrite'
+/* eslint-disable no-console -- debug */
+import { Account, Avatars, Client, Databases, ID } from 'react-native-appwrite'
+
+import { type SignUpFormState } from '@/components/form'
 
 export const appwriteConfig = {
   endpoint: 'https://cloud.appwrite.io/v1',
@@ -18,12 +21,54 @@ client
   .setPlatform(appwriteConfig.platform)
 
 const account = new Account(client)
+const avatars = new Avatars(client)
+const dbs = new Databases(client)
 
-export const createUser = async (
-  email: string,
-  password: string,
-  name: string,
-) => {
-  const resp = await account.create(ID.unique(), email, password, name)
-  return resp
+export const signIn = async ({
+  email,
+  password,
+}: Omit<SignUpFormState, 'formType' | 'userName'>) => {
+  try {
+    const session = await account.createEmailPasswordSession(email, password)
+    return session
+  } catch (error) {
+    // Handle the error here
+    console.error('Error signing in:', error)
+    throw error
+  }
+}
+
+export const createUser = async ({
+  email,
+  password,
+  userName,
+}: Omit<SignUpFormState, 'formType'>) => {
+  try {
+    const newAccount = await account.create(
+      ID.unique(),
+      email,
+      password,
+      userName,
+    )
+
+    if (!newAccount.$id) throw new Error('Account creation failed')
+    const avatarUrl = avatars.getInitials(userName)
+    await signIn({ email, password })
+    const newUser = await dbs.createDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.userCollectionId,
+      ID.unique(),
+      {
+        avatarUrl,
+        accountId: newAccount.$id,
+        email,
+        username: userName,
+      },
+    )
+    return newUser
+  } catch (error) {
+    // Handle the error here
+    console.error('Error creating user:', error)
+    throw error
+  }
 }

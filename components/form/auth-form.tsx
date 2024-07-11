@@ -11,13 +11,13 @@ import { FormField } from './form-field'
 
 type FormType = 'signin' | 'signup'
 
-type SigninFormState = {
+export type SigninFormState = {
   email: string
   password: string
   formType: Extract<FormType, 'signin'>
 }
 
-type SignUpFormState = {
+export type SignUpFormState = {
   email: string
   password: string
   userName: string
