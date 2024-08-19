@@ -3,7 +3,7 @@ import React from 'react'
 import { FlatList, Text } from 'react-native'
 
 import { ScrollableWrapper } from '@/components'
-import { ListHeader } from '@/components/home'
+import { FAKE_POSTS, ListHeader } from '@/components/home'
 
 const fakeData = [
   {
@@ -30,7 +30,7 @@ const HomeView = () => {
   return (
     <ScrollableWrapper>
       <FlatList
-        ListHeaderComponent={() => <ListHeader latestPosts={[]} />}
+        ListHeaderComponent={() => <ListHeader latestPosts={FAKE_POSTS} />}
         data={fakeData}
         keyExtractor={(item) => item.$id}
         renderItem={({ item }) => (

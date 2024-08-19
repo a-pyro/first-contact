@@ -5,7 +5,9 @@ import { images } from '@/constants'
 
 import { SearchInput } from '../form/search-input'
 
-export const ListHeader = ({ latestPosts }: { latestPosts: any[] }) => (
+import { type Post, Trending } from './trending'
+
+export const ListHeader = ({ latestPosts }: { latestPosts: Post[] }) => (
   <View className="my-6 flex space-y-6 px-4">
     <View className="mb-6 flex flex-row items-start justify-between">
       <View>
@@ -30,8 +32,7 @@ export const ListHeader = ({ latestPosts }: { latestPosts: any[] }) => (
       <Text className="mb-3 font-pregular text-lg text-gray-100">
         Latest Videos
       </Text>
-
-      {/* <Trending posts={latestPosts ?? []} /> */}
+      <Trending posts={latestPosts} />
     </View>
   </View>
 )
